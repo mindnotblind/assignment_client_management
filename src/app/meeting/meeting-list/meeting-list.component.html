@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Meeting List</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Members</th>
+                <th>Date & Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let meeting of meetings">
+                <td>{{ meeting.title }}</td>
+                <td>{{ meeting.members }}</td>
+                <td>{{ meeting.date }} {{ meeting.startTime }}</td>
+                <td>
+                    <button (click)="editMeeting(meeting)">Edit</button>
+                    <button (click)="deleteMeeting(meeting.id)">Cancel</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

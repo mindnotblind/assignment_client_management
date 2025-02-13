@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Client List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td *ngIf="!editingClient || editingClient.id !== client.id">{{ client.name }}</td>
+                <td *ngIf="editingClient && editingClient.id === client.id">
+                    <input type="text" [(ngModel)]="editingClient.name">
+                </td>
+
+                <td *ngIf="!editingClient || editingClient.id !== client.id">{{ client.email }}</td>
+                <td *ngIf="editingClient && editingClient.id === client.id">
+                    <input type="email" [(ngModel)]="editingClient.email">
+                </td>
+
+                <td *ngIf="!editingClient || editingClient.id !== client.id">{{ client.address }}</td>
+                <td *ngIf="editingClient && editingClient.id === client.id">
+                    <input type="text" [(ngModel)]="editingClient.address">
+                </td>
+
+                <td>
+                    <button *ngIf="!editingClient || editingClient.id !== client.id" (click)="editClient(client)">Edit</button>
+                    <button *ngIf="editingClient && editingClient.id === client.id" (click)="updateClient()">Save</button>
+                    <button *ngIf="editingClient && editingClient.id === client.id" (click)="cancelEdit()">Cancel</button>
+                    <button (click)="deleteClient(client.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
